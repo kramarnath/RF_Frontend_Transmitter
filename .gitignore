@@ -1,0 +1,17 @@
+# Cadence
+*.log
+*.swp
+*.bak
+CDS.lib
+cdslck
+.cadence/
+simulation/
+*.cds
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Misc
+*.tmp
+*.zip
