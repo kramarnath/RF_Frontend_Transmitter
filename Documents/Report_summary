@@ -54,7 +54,6 @@ Baseband Input (10 MHz, 20 mV differential)
 | Transmit Current | 5 – 20 mA |
 | Output Impedance | 50 Ω |
 | Supply Voltage | 0.9 V |
-
 ---
 
 ## Block 1 — Active Mixer (Gilbert Cell)
