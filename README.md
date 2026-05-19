@@ -47,4 +47,4 @@ Think of it like a radio station in miniature:
 
 ---
 
-For full technical details, see [`docs/project_summary.md`](docs/project_summary.md)
+For full technical details, see [`Documents/project_summary.md`](Documents/project_summary.md)
