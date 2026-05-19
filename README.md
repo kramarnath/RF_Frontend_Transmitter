@@ -1,111 +1,50 @@
-# RF Front-End Transmitter — BLE 2.4 GHz
+# RF Front-End Transmitter — 2.4 GHz BLE
 
-Designed and simulated using **Cadence Virtuoso**
-
----
-
-## Overview
-
-A Bluetooth Low Energy (BLE) compatible RF front-end transmitter operating in the **2.4 GHz ISM band**, designed and verified using Cadence Virtuoso ADE with post-layout verification via Calibre.
+Final year B.Tech ECE project | GEC Thrissur
 
 ---
 
-## Architecture
+## What is this?
 
-```
-Baseband Input (10 MHz)
-        │
-        ▼
-  ┌─────────────┐     ┌─────┐
-  │ Active Mixer│◄────│ VCO │  (2.4 GHz LC-tank oscillator)
-  └─────────────┘     └─────┘
-        │
-        ▼
-  ┌──────────────────┐
-  │ Voltage Amplifier│
-  └──────────────────┘
-        │
-        ▼
-  ┌────────────────┐
-  │ Power Amplifier│  (Class A, 2.41 GHz)
-  └────────────────┘
-        │
-        ▼
-    Antenna (50 Ω)
-```
+When you connect your phone to a Bluetooth speaker, your phone needs to convert its digital audio data into a radio signal and broadcast it through the air. The circuit that does this job is called an **RF Front-End Transmitter**.
+
+This project designs and simulates exactly that — a small transmitter circuit that takes a low-frequency digital signal and converts it into a **2.4 GHz radio signal** compatible with Bluetooth Low Energy (BLE).
+
+The entire design was built and tested virtually using **Cadence Virtuoso**, an industry-standard chip design tool.
 
 ---
 
-## Key Specifications
+## How does it work? (Simple version)
 
-| Parameter | Value |
+Think of it like a radio station in miniature:
+
+1. **You start with your data** — a slow 10 MHz signal (your "voice")
+2. **The VCO creates a carrier wave** — a fast 2.4 GHz signal (the "radio frequency")
+3. **The Mixer combines them** — stamps your data onto the carrier wave
+4. **The Voltage Amplifier boosts the signal** — makes it strong enough for the next stage
+5. **The Power Amplifier cranks it up** — pushes it to transmission power
+6. **Out through the antenna** — broadcasts as a Bluetooth radio wave
+
+---
+
+## Key Numbers
+
+| What | Value |
 |---|---|
-| Frequency Band | 2400 – 2483.5 MHz (ISM) |
-| Modulation | GFSK (BLE) |
-| Output Frequency | 2.435 GHz |
-| Output Voltage | 318.28 mV |
-| Output Current | 6.37 mA |
-| RF Output Power | ~2.03 mW |
-| Total DC Power | 8.925 mW |
-| Efficiency | ~22.7% |
+| Output Frequency | 2.435 GHz (BLE band) |
+| Input Signal | 10 MHz, 20 mV |
+| Output Power | ~2 mW |
 | Supply Voltage | 0.9 V |
+| Total Power Used | 8.9 mW |
+| Efficiency | 22.7% |
 
 ---
 
-## Building Blocks
+## Tools
 
-### 1. Gilbert Cell Active Mixer
-- Double-balanced CMOS Gilbert cell
-- Conversion Gain: −0.4 dB
-- Noise Figure: 8.56 dB (schematic), 8.69 dB (post-layout)
-- IIP3: 0.505 dBm | OIP3: 0.486 dBm
-- Power Consumption: 0.312 mW
-
-### 2. Voltage Controlled Oscillator (VCO)
-- LC-tank cross-coupled oscillator
-- Oscillation Frequency: ~2.425 GHz
-- Inductance: 8 nH
-
-### 3. Voltage Amplifier
-- Differential input, single-ended output
-- Bandwidth: 7.94 GHz (pre-layout), 4.56 GHz (post-layout)
-- IIP3: 6 dBm | OIP3: 20 dBm
-
-### 4. Power Amplifier
-- Class A CMOS, single-input single-output
-- Operating Frequency: 2.41 GHz
-- Optimum Load: 100 Ω → matched to 50 Ω
-- Output Power: ~1.48 mW (post-layout)
-- PAE: ~35%
-- IP1dB: 11 dBm | OP1dB: 22.8 dBm
+- **Cadence Virtuoso** — circuit design and simulation
+- **Calibre** — layout verification and parasitic extraction
 
 ---
 
-## Tools Used
-
-- **Cadence Virtuoso** — Schematic design & simulation (ADE)
-- **Calibre** — DRC, LVS, PEX (parasitic extraction)
-
----
-
-## Results Summary
-
-| Stage | Pre-layout | Post-layout |
-|---|---|---|
-| Mixer CG | 0.955 | 0.981 |
-| Mixer NF | 8.56 dB | 8.69 dB |
-| VCO Frequency | 2.425 GHz | ~2.44 GHz |
-| Amp Bandwidth | 7.94 GHz | 4.56 GHz |
-| PA Output Power | 2.13 mW | 1.48 mW |
-| TX Output Power | 2.24 mW | 2.03 mW |
-| TX Efficiency | — | 22.7% |
-
----
-
-## References
-
-- B. Razavi, *RF Microelectronics*, 2nd ed., Prentice Hall, 2012
-- T. L. Vivek, M.Tech Thesis, *Analog Front-End Design of Bluetooth Transmitter*, IIT Madras, 2013
-- S. P. Raajhen et al., *Design of Digital RF Transmitter for Bluetooth Applications*, ICCTET 2013
-
----
+For full technical details, see [`docs/project_summary.md`](docs/project_summary.md)
